@@ -8,7 +8,7 @@ from contact import models
 class ContactAdmin(admin.ModelAdmin):
     #ordem (id, first| name, last name, etc..)
     list_display = ('id','firt_name', 'last_name', 'phone', 'email',)
-    #ordenaão por id
+    #ordenação por id
     ordering = ('id',)
     # list_filter = ('created_date',)
     #cria uma barra de pesquisa
