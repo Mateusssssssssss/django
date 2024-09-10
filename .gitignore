@@ -5,6 +5,8 @@
 __pycache__
 db.sqlite3
 media
+utils
+project/localsettings.py
 
 # Backup files # 
 *.bak 

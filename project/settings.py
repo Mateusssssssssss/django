@@ -132,3 +132,9 @@ MEDIA_ROOT = BASE_DIR / 'media' #arquivos enviado para o usuario
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+try:
+    from project.localsettings import *
+except ImportError:
+    ...
