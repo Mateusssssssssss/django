@@ -17,5 +17,11 @@ class ContactAdmin(admin.ModelAdmin):
     list_max_show_all = 100
     #numero de contactos a serem mostrados por pagina
     list_per_page = 30
+
+#registrar a class category
+@admin.register(models.Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+    ordering = ('id',)
     
     
