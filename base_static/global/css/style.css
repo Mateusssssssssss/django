@@ -45,7 +45,11 @@
     font-size: var(--small-font-size);
     color: var(--clr-black);
     -webkit-font-smoothing: antialiased;
-    background: rgba(0, 0);
+    background: rgb(213, 249, 237);
+    box-shadow: solid;
+    margin: 0px 100px 0px 100px ;
+    box-sizing: border-box;
+  
   }
   
   img,
@@ -55,7 +59,7 @@
   }
   
   .header {
-    background: var(--clr-black);
+    background:darkseagreen;
     padding: 1.5rem;
     box-shadow: 0 5px 10px 2px var(--clr-dark-shadow-20);
     z-index: 1;
@@ -66,15 +70,16 @@
     font-size: var(--biggest-font-size);
     text-align: center;
   }
-  
+
   .header-link {
-    color: var(--link-light-color);
+    color:rgb(3, 5, 5);
     text-decoration: none;
     transition: filter var(--transition-fast) ease-in-out;
   }
   
   .header-link:hover {
     filter: brightness(70%);
+    color: #0de1e4;
   }
   
   .menu {
@@ -112,7 +117,8 @@
   
   .responsive-table {
     width: 100%;
-    overflow-x: auto;
+    overflow-x: auto; 
+    box-shadow:  0px 4px 10px rgba(0, 0, 0, 0.5);
   }
   
   .contacts-table {
@@ -125,12 +131,14 @@
     font-size: var(--medium-font-size);
     font-weight: bold;
     padding: 1.5rem;
+    background-color: #ffffff;
   }
   
   .table-row {
     text-align: left;
     text-overflow: ellipsis;
     transition: background-color var(--transition-fast) ease-in-out;
+    background-color: #ffffff;
   }
   
   .table-row:nth-of-type(2n) {
@@ -188,8 +196,9 @@
   .single-contact{
     background-color: darkseagreen;
     box-shadow: 0 4px 7px rgba(0, 0, 0, 0.5);
+    
   }
-  
+
   .pagination {
     margin-top: 1.5rem;
     display: flex;
