@@ -1,11 +1,11 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Agenda</title>
+    <title>{{ site_title }}Agenda</title>
     <link rel="stylesheet" href="{% static 'global\css\style.css' %}" />
   </head>
 
@@ -16,25 +16,23 @@
       <nav class="menu">
         <ul class="menu-list">
           <li class="menu-item">
-            <a href=""  class="menu-link">
-              link
-            </a>
+            <a href="" class="menu-link">link</a>
           </li>
           <li class="menu-item">
-            <a href=""  class="menu-link">
-              link 2
-            </a>
+            <a href="" class="menu-link">link 2</a>
           </li>
         </ul>
       </nav>
+
       <div class="search">
-      <form action="" method="get">
-        <input type="text" class="search-input" placeholder="Pesquisar">
-      </form>
-    </div>
+        <form action="{% url 'contact:search' %}" method="GET">
+          <input type="text" class="search-input" placeholder="Pesquisar" id="search" name="q" />
+        </form>
+      </div>
     </header>
 
     {% block content %}
+
     {% endblock %}
   </body>
 </html>
