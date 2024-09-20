@@ -1,0 +1,25 @@
+{% if page_obj %}
+  <div class="pagination">
+    <span class="step-links">
+      {% if page_obj.has_previous %}
+        <a href="?page=1&q={{request.GET.q.strip}}">&laquo; Primeira pagina</a>
+        <a href="?page={{ page_obj.previous_page_number }}&q={{request.GET.q.strip}}">&laquo; Anterior</a>
+      {% endif %}
+
+      <span class="current">Pagina {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.</span>
+
+      {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}&q={{request.GET.q.strip}}">Proxima &raquo;</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}&q={{request.GET.q.strip}}">Ultima pagina &raquo;</a>
+      {% endif %}
+    </span>
+  </div>
+{% else  %}
+  <div class="single-contact">
+    <h1 class="single-contacth1">Nenhum contato encontrado.</h1>
+  </div>
+
+{% endif %}
+
+
+

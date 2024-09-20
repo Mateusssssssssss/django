@@ -1,44 +1,34 @@
-{% extends "global/base.html" %}
+{% extends 'global/base.html' %}
 {% block content %}
-  <div class="responsive-table">
-    <table class="contacts-table">
-      <caption class="table-caption ">
-        Contacts
-      </caption>
+  {% if page_obj  %}
+    <div class="responsive-table">
+      <table class="contacts-table">
+        <caption class="table-caption">Contacts</caption>
 
-      <thead>
-        <tr class="table-row_table-row-header">
-          <th class="table-header">ID</th>
-          <th class="table-header">First Name</th>
-          <th class="table-header">Last Name</th>
-          <th class="table-header">Phone</th>
-          <th class="table-header">E-mail</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        {% for contact in contacts %}
-          <tr class="table-row">
-            <td class="table-cel">
-              <a class="table-link" href="{% url 'contact:contact' contact.id %}">
-                {{ contact.id }}
-              </a>
-            </td>
-            <td class="table-first">
-              {{ contact.firt_name }}
-            </td>
-            <td class="table-last">
-              {{ contact.last_name }}
-            </td>
-            <td class="table-cel">
-              {{ contact.phone }}
-            </td>
-            <td class="table-email">
-              {{ contact.email }}
-            </td>
+        <thead>
+          <tr class="table-row_table-row-header">
+            <th class="table-header">ID</th>
+            <th class="table-header">First Name</th>
+            <th class="table-header">Last Name</th>
+            <th class="table-header">Phone</th>
+            <th class="table-header">E-mail</th>
           </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </div>
-{% endblock content %}
+        </thead>
+
+        <tbody>
+          {% for contact in page_obj %}
+            <tr class="table-row">
+              <td class="table-info">
+                <a class="table-link" href="{% url 'contact:contact' contact.id %}">{{ contact.id }}</a>
+              </td>
+              <td class="table-info">{{ contact.firt_name }}</td>
+              <td class="table-info">{{ contact.last_name }}</td>
+              <td class="table-info">{{ contact.phone }}</td>
+              <td class="table-info">{{ contact.email }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% endif %}
+{% endblock %}

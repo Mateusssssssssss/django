@@ -47,8 +47,8 @@
     -webkit-font-smoothing: antialiased;
     background:url(https://factorypyme.thestandardit.com/wp-content/uploads/sites/5/2016/05/Agenda-las-5.jpg);
     box-shadow: solid;
-    margin: 0px 100px 0px 100px;
     box-sizing: border-box;
+    background-size: cover ;
   
   }
   
@@ -64,7 +64,7 @@
     box-shadow: 0 5px 10px 2px var(--clr-dark-shadow-20);
     z-index: 1;
     position: relative;
-    margin: 0px 0px 50px 0px;
+   
     
   }
   
@@ -120,15 +120,17 @@
   }
   
   .responsive-table {
-    width: 100%;
     overflow-x: auto; 
-    box-shadow:  0px 4px 10px rgba(0, 0, 0, 0.6);
+    box-shadow:  10px 10px 10px 10px rgba(0, 0, 0, 0.6);
+    padding: 0px 100px 0px 100px;
   }
   
   .contacts-table {
     width: 100%;
     min-width: var(--table-min-width);
     border-collapse: collapse;
+    box-shadow: 4px 4px 10px 4px rgba(0, 0, 0, 0.5);
+    
   }
   
   .table-caption {
@@ -136,13 +138,16 @@
     font-weight: bold;
     padding: 1.5rem;
     background-color: rgba(228, 225, 225, 0.7);  
+    box-shadow: 4px 4px 10px 4px rgba(0, 0, 0, 0.5);
+   
   }
-  
+ 
   .table-row {
     text-align: left;
     text-overflow: ellipsis;
     transition: background-color var(--transition-fast) ease-in-out;
     background-color:rgba(228, 225, 225, 0.7);
+   
   
   }
   
@@ -160,16 +165,16 @@
     color: var(--clr-black);
   }
   .table-row_table-row-header{
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 4px 4px 10px 4px rgba(0, 0, 0, 0.5);
     background:rgba(143, 188, 143, 0.8);
 
   }
   
-  .table-cel,
+  .table-info,
   .table-header {
-    padding: var(--spacing);
+    padding: var(--spacing); 
+    text-align: center;
   }
-  
   .table-link {
     color: var(--link-dark-color);
     transition: color var(--transition-fast) ease-in-out;
@@ -218,16 +223,17 @@
     justify-content: center;
     padding: calc(1.5rem * 0.8);
     font-size: var(--small-font-size);
+    color:rgba(228, 225, 225, 0.7)
   } 
   
   .pagination .step-links {
     display: flex;
     gap: calc(1.5rem * 0.8);
+    
   }
   
   .pagination .step-links a {
-    color: var(--link-dark-color);
-    transition: color var(--transition-fast) ease-in-out;
+    color: darkseagreen;
     text-decoration: none;
     display: block;
   }
@@ -235,19 +241,25 @@
   .search {
     display: flex;
     justify-content: center;
+    padding: 20px ;
+    
   }
   
   .search-input {
-    font-size: 10px ;
-    padding: 1rem 2rem;
-    width: 100%;
-    max-width: 32rem;
-    border-radius: var(--default-border-radius);
-    border: 1px solid var(--link-light-color);
+    padding: 20px 100px 20px 100px;
+    border-radius: 50px;
+    border: 1px solid darkseagreen;
+  }
+  .search-input::placeholder{
+    font-size: 20px;
+    text-align: center;
+    color: darkseagreen;
+    
+    
   }
   
   .search-input:focus {
-    box-shadow: 0 0 15px var(--link-light-color);
+    box-shadow: 0 0 40px darkseagreen;
   }
   
   .message {

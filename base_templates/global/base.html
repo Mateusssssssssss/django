@@ -16,23 +16,33 @@
       <nav class="menu">
         <ul class="menu-list">
           <li class="menu-item">
-            <a href="" class="menu-link">link</a>
+            <a href="" class="menu-link">Entrar</a>
           </li>
           <li class="menu-item">
-            <a href="" class="menu-link">link 2</a>
+            <a href="" class="menu-link">Registrar</a>
           </li>
         </ul>
       </nav>
 
+    </header>
+    <header>
       <div class="search">
         <form action="{% url 'contact:search' %}" method="GET">
-          <input type="text" class="search-input" placeholder="Pesquisar" id="search" name="q" />
+          <input type="text" class="search-input" placeholder="Pesquisar" id="search" name="q" value="{{ request.GET.q.strip }}" />
         </form>
       </div>
     </header>
+    <main>
+    {% block content %}{% endblock content %}
+    {% include "global/partials/pagination.html" %}
+  </main>
 
-    {% block content %}
+    
+  
+      
+    
+  
 
-    {% endblock %}
+    
   </body>
 </html>
