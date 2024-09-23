@@ -1,4 +1,5 @@
 {% extends 'global/base.html' %}
+
 {% block content %}
   {% if page_obj  %}
     <div class="responsive-table">
@@ -30,5 +31,10 @@
         </tbody>
       </table>
     </div>
+    {% else %}
+    <div class="single-contact">
+      <h1 class="single-contacth1">
+        Nenhum contato encontrado.
+      </h1>
   {% endif %}
 {% endblock %}

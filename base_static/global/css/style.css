@@ -289,7 +289,22 @@
   
   .form-wrapper {
     max-width: 60rem;
-    margin: 1.5rem auto;
+    margin: 100px auto ;
+    background-color: rgba(143, 188, 143, 0.5);
+    box-shadow: 0 4px 7px rgba(0, 0, 0, 0.5);
+  }
+
+  .createh1{
+    margin-left: 230px;
+    background-color: rgba(143, 188, 143, 0.5);
+    box-shadow: 0 4px 7px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    width: 680px;
+    white-space: nowrap;
+    text-align: center;
+  }
+  .createh2{
+    text-align: center;
   }
   
   .form-content {
@@ -299,7 +314,6 @@
   .form-group {
     display: flex;
     flex-direction: column;
-    padding-bottom: var(--spacing);
   }
   .errorlist {
     list-style: none;
@@ -338,11 +352,12 @@
   
   .form-group label {
     font-size: var(--smaller-font-size);
+    margin-left: 10px;
   }
   
   .btn {
-    background-color: var(--link-dark-color);
-    color: var(--clr-white);
+    background-color: darkseagreen;
+    color: black;
     font-weight: bold;
     border: none;
     padding: 1rem 2rem;

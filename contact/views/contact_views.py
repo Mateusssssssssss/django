@@ -5,7 +5,6 @@ from django.db.models import Q
 from django.core.paginator import Paginator
 
 
-import contact
 
 # Create your views here.
 def index(request):
@@ -18,9 +17,7 @@ def index(request):
     context = {
         'page_obj': page_obj,
         'site_title': 'Contatos - '
-        
-         
-    }
+        }
     
     return render(request, 'contact/index.html', context)
 

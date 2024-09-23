@@ -23,7 +23,6 @@
           </li>
         </ul>
       </nav>
-
     </header>
     <header>
       <div class="search">
@@ -33,16 +32,9 @@
       </div>
     </header>
     <main>
-    {% block content %}{% endblock content %}
-    {% include "global/partials/pagination.html" %}
-  </main>
-
-    
-  
-      
-    
-  
-
-    
+      {% block content %}
+      {% endblock %}
+      {% include 'global/partials/pagination.html' %}
+    </main>
   </body>
 </html>
