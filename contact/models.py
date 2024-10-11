@@ -32,3 +32,5 @@ class Contact(models.Model):
     
     def __str__(self) -> str:
         return f'{self.firt_name} {self.last_name}'
+
+   

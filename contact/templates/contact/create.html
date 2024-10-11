@@ -1,9 +1,7 @@
 {% extends 'global/base.html' %}
 
 {% block content %}
-  <div>
-    <h1 class="createh1">CRIAR CONTATO</h1>
-  </div>
+  
   <div class="form-wrapper">
     <h2 class="createh2">Contato</h2>
 
@@ -15,10 +13,15 @@
       <div class="form-content">
         <div class="form-group">
           <label for="{{ field.id_for_label }}">{{field.label}}</label>
+         
           {{ field }}
           {{ field.errors}}
+          
+          {% if field.help_text %}
+          <p class="help-text">{{field.help_text}}</p>
+          {% endif %}
         </div>
-        {% endfor %}
+      {% endfor %}
         
       </div>
       <div class="form-content">
