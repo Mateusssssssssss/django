@@ -61,6 +61,27 @@ def update(request, contact_id):
 
 
 
+def delete(request, contact_id):
+    contact = get_object_or_404(
+        Contact, pk=contact_id, show=True
+    )
+    confirmacao = request.POST.get('confirmacao', 'nao')
+
+    if confirmacao == 'sim':
+        contact.delete()
+        return redirect('contact:index')
+
+    return render(
+        request,
+        'contact/contact.html',
+        {
+            'contact': contact,
+            'confirmacao': confirmacao,
+        }
+    )
+
+
+
 def clean(self):
         # cleaned_data = self.cleaned_data
     cleaned_data = self.cleaned_data

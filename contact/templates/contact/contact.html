@@ -1,27 +1,51 @@
 {% extends 'global/base.html' %}
 {% block content %}
-  
-    <div class="single-contact">
-      <h1 class="single-contacth1">{{ contact.firt_name }} {{ contact.last_name }}</h1>
+  <div class="single-contact">
+    <h1 class="single-contacth1">{{ contact.firt_name }} {{ contact.last_name }}</h1>
 
-      <p>
-        <b>ID:</b> {{ contact.id }}
-      </p>
-      <p>
-        <b>E-mail:</b> {{ contact.email }}
-      </p>
-      <p>
-        <b>Phone:</b> {{ contact.phone }}
-      </p>
-      <p>
-        <b>Create Date:</b> {{ contact.created_date }}
-      </p>
-      <p>
-        <b>Description:</b> {{ contact.description }}
-      </p>
-      <p>
-        <b>Category:</b> {{ contact.category.name }}
-      </p>
-    </div>
+    <p>
+      <b>ID:</b> {{ contact.id }}
+    </p>
+    <p>
+      <b>E-mail:</b> {{ contact.email }}
+    </p>
+    <p>
+      <b>Phone:</b> {{ contact.phone }}
+    </p>
+    <p>
+      <b>Create Date:</b> {{ contact.created_date }}
+    </p>
+    <p>
+      <b>Description:</b> {{ contact.description }}
+    </p>
+    <p>
+      <b>Category:</b> {{ contact.category.name }}
+    </p>
+    <div class="display-form">
+    <form action="{% url 'contact:update' contact.id %}" method="get" > 
+      <div class="div-botao-atualizar">
+      <button class="botao-atualizar">
+      <strong>Atualizar</strong>
+      </button>
+      </div>
+    </form>
 
+    <form action="{% url 'contact:delete' contact.id %}" method="POST" class="form-botao"> 
+      {% csrf_token %}
+      
+      <div class="div-botao-deletar">
+      {% if confirmacao == 'nao'  %}
+      <input type="hidden" name="confirmacao" value="sim">
+      <button type="submit" class="botao-deletar">
+      <strong>Confirma?</strong> 
+      </button>
+      </div>
+      {% else %}
+      <div class="div-botao-deletar">
+        <button type="submit" class="botao-deletar">
+        <strong>Deletar</strong>
+        </div>
+      {% endif %}
+    </form>
+  </div>
 {% endblock %}

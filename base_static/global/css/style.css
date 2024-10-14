@@ -132,6 +132,45 @@
     box-shadow: 4px 4px 10px 4px rgba(0, 0, 0, 0.5);
     
   }
+
+  .botao-atualizar{
+    color: blue; 
+    width: 100px ;
+    height: 30px;
+  }
+
+  .botao-deletar{
+    color: red;
+    width: 100px ;
+    height: 30px;
+  }
+  
+  .div-botao-deletar{
+   
+    padding-left: 10px;
+
+
+  }
+
+  .botao-deletar:hover{
+    background-color: red;
+    color: black;
+    
+  }
+
+  .botao-atualizar:hover{
+    background-color: blue;
+    color: black;
+    
+  }
+
+  .display-form{
+    display: flex;
+    
+
+  }
+  
+  
   
   .table-caption {
     font-size: 22px;
@@ -204,19 +243,12 @@
   
   }
   .single-contact{
-    background-color: rgba(143, 188, 143, 0.5);
+    background-color: rgba(143, 188, 143, 0.8);
     box-shadow: 0 4px 7px rgba(0, 0, 0, 0.5);
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
     
   }
-  .single-contact:hover {
-    background-color: rgba(143, 188, 143, 0.8); /* Cor de fundo ao passar o mouse */
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.7);
    
-    
-  }
-
-
   .pagination {
     margin-top: 1.5rem;
     display: flex;
@@ -348,23 +380,3 @@
     margin-left: 10px;
   }
   
-  .btn {
-    background-color: darkseagreen;
-    color: black;
-    font-weight: bold;
-    border: none;
-    padding: 1rem 2rem;
-    border-radius: var(--default-border-radius);
-    cursor: pointer;
-    transition: filter var(--transition-fast) ease-in-out;
-  }
-  
-  .btn:hover {
-    filter: brightness(90%);
-  }
-  
-  .btn:focus,
-  .btn:active {
-    filter: brightness(80%);
-    box-shadow: 0 0 5px var(--link-dark-color);
-  }
