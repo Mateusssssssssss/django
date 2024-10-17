@@ -21,6 +21,11 @@
     <p>
       <b>Category:</b> {{ contact.category.name }}
     </p>
+    {% if contact.picture %}
+    <p>
+        <img src="{{contact.picture.url}}" alt="{{ contact.firt_name}} {{ contact.last_name}}">
+    </p>
+    {% endif %}
     <div class="display-form">
     <form action="{% url 'contact:update' contact.id %}" method="get" > 
       <div class="div-botao-atualizar">

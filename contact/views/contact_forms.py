@@ -7,6 +7,11 @@ from django.urls import reverse
 
 
 class ContactForm(forms.ModelForm):
+    picture = forms.ImageField(
+        widget=forms.FileInput(attrs={
+            'accept' : 'image/*',
+        })
+    )
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -14,14 +19,14 @@ class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact
         fields = ('firt_name', 'last_name', 'phone',
-                  'email','description', 'category',)
+                  'email','description', 'category', 'picture')
         
     
 
 def create(request):
     form_action = reverse('contact:create')
     if request.method == 'POST':
-        form = ContactForm(request.POST)
+        form = ContactForm(request.POST, request.FILES)
         context = {
             'form': form,
             'form_action': form_action,
@@ -43,7 +48,7 @@ def update(request, contact_id):
     form_action = reverse('contact:update', args=(contact_id,))
     
     if request.method == 'POST':
-        form = ContactForm(request.POST, instance=contact)
+        form = ContactForm(request.POST, request.FILES, instance=contact,)
         context = {
             'form': form,
             'form_action': form_action,
@@ -97,14 +102,3 @@ def clean(self):
 
         return super().clean()
 
-def clean_first_name(self):
-    first_name = self.cleaned_data.get('first_name')
-    if first_name == 'ABC':
-        self.add_error(
-            'firt_name',
-            ValidationError(
-                'Veio do add_error',
-                code='invalid'
-            )
-        )
-    return first_name
