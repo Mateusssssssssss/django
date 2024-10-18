@@ -3,6 +3,7 @@ from contact.models import Contact
 from django import forms
 from django.core.exceptions import ValidationError
 from django.urls import reverse
+from django.contrib.auth.forms import UserCreationForm
 
 
 
@@ -102,3 +103,7 @@ def clean(self):
 
         return super().clean()
 
+
+
+class RegisterForm(UserCreationForm):
+    ...
