@@ -70,89 +70,26 @@ class ContactForm(forms.ModelForm):
             self.add_error('firt_name', msgf)
             
         return firt_name
-            
-
-
-
-def create(request):
-    form_action = reverse('contact:create')
-    if request.method == 'POST':
-        form = ContactForm(request.POST, request.FILES)
-        context = {
-            'form': form,
-            'form_action': form_action,
-        }
-        if form.is_valid():
-            contact = form.save()
-            return redirect('contact:update', contact_id=contact.pk)
-        return render(request, 'contact/create.html', context)
-    
-    context = {
-        'form': ContactForm(),
-        'form_action': form_action,
-    }
-    return render(request, 'contact/create.html', context)
-
-
-def update(request, contact_id):
-    contact = get_object_or_404(Contact, pk=contact_id, show=True)
-    form_action = reverse('contact:update', args=(contact_id,))
-    
-    if request.method == 'POST':
-        form = ContactForm(request.POST, request.FILES, instance=contact,)
-        context = {
-            'form': form,
-            'form_action': form_action,
-        }
-        if form.is_valid():
-            contact = form.save()
-            return redirect('contact:update', contact_id=contact.pk)
-        return render(request, 'contact/create.html', context)
-    
-    context = {
-        'form': ContactForm(instance=contact),
-        'form_action': form_action,
-    }
-    return render(request, 'contact/create.html', context)
-
-
-
-def delete(request, contact_id):
-    contact = get_object_or_404(
-        Contact, pk=contact_id, show=True
-    )
-    confirmacao = request.POST.get('confirmacao', 'nao')
-
-    if confirmacao == 'sim':
-        contact.delete()
-        return redirect('contact:index')
-
-    return render(
-        request,
-        'contact/contact.html',
-        {
-            'contact': contact,
-            'confirmacao': confirmacao,
-        }
-    )
 
 class RegisterForm(UserCreationForm):
-    first_name = forms.CharField(required=True, min_length=3)
-    last_name = forms.CharField(required=True, min_length=3)
+    firt_name = forms.CharField(required=True,label='Nome', min_length=3)
+    last_name = forms.CharField(required=True,label='Sobrenome' ,min_length=3)
     email = forms.EmailField()
+    
     class Meta:
         model = User
         fields = (
-            'first_name', 'last_name', 'email','username', 'password1', 'password2',
+            'firt_name', 'last_name', 'email','username', 'password1', 'password2',
         )
         
     def clean_email(self):
         email = self.cleaned_data.get('email')
         if User.objects.filter(email=email).exists():
             self.add_error(
-                'email', ValidationError('Já existe este e-mail', code='invalid')
+                'email', ValidationError('E-mail já cadastrado', code='invalid')
             )
-        return email
+            return email
+        return('contact/register.html')
     
     
     
@@ -233,3 +170,66 @@ class RegisterUpdateForm(forms.ModelForm):
                 )
 
         return email
+
+    
+def create(request):
+    form_action = reverse('contact:create')
+    if request.method == 'POST':
+        form = ContactForm(request.POST, request.FILES)
+        context = {
+            'form': form,
+            'form_action': form_action,
+        }
+        if form.is_valid():
+            contact = form.save()
+            return redirect('contact:update', contact_id=contact.pk)
+        return render(request, 'contact/create.html', context)
+    
+    context = {
+        'form': ContactForm(),
+        'form_action': form_action,
+    }
+    return render(request, 'contact/create.html', context)
+
+
+def update(request, contact_id):
+    contact = get_object_or_404(Contact, pk=contact_id, show=True)
+    form_action = reverse('contact:update', args=(contact_id,))
+    
+    if request.method == 'POST':
+        form = ContactForm(request.POST, request.FILES, instance=contact,)
+        context = {
+            'form': form,
+            'form_action': form_action,
+        }
+        if form.is_valid():
+            contact = form.save()
+            return redirect('contact:update', contact_id=contact.pk)
+        return render(request, 'contact/create.html', context)
+    
+    context = {
+        'form': ContactForm(instance=contact),
+        'form_action': form_action,
+    }
+    return render(request, 'contact/create.html', context)
+
+
+
+def delete(request, contact_id):
+    contact = get_object_or_404(
+        Contact, pk=contact_id, show=True
+    )
+    confirmacao = request.POST.get('confirmacao', 'nao')
+
+    if confirmacao == 'sim':
+        contact.delete()
+        return redirect('contact:index')
+
+    return render(
+        request,
+        'contact/contact.html',
+        {
+            'contact': contact,
+            'confirmacao': confirmacao,
+        }
+    )

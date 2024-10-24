@@ -1,13 +1,13 @@
-from pyexpat.errors import messages
+from django.contrib import auth, messages
 from django.shortcuts import redirect, render
 from contact.views import RegisterForm
-
-
+from django.shortcuts import render, redirect, get_object_or_404
 
 
 
 def register(request):
     form = RegisterForm()
+  
     
     if request.method == 'POST':
         form = RegisterForm(request.POST)
