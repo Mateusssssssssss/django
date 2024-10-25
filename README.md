@@ -2,7 +2,7 @@ Mateus Gabriel da Silva
 
 Sobre Mim:
 
-Desenvolvedor com experiência em algumas tecnologias e áreas do desenvolvimento web e de dados. 
+Desenvolvedor com conhecimento em algumas tecnologias e áreas do desenvolvimento web e de dados. 
 Tenho conhecimento em Python e Django, além de habilidades em criação de dashboards interativos com Power BI, Conhecimento no front-end, com habilidades em HTML e CSS, e também com bancos de dados relacionais como SQLite e MySQL.
 
 Habilidades Técnicas:
