@@ -4,9 +4,11 @@ from contact.models import Contact
 from django import forms
 from django.core.exceptions import ValidationError
 from django.urls import reverse
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
+from django.contrib.auth import authenticate, login
+from django.contrib import auth, messages
 
 class ContactForm(forms.ModelForm):
     phone = forms.CharField(
@@ -233,3 +235,4 @@ def delete(request, contact_id):
             'confirmacao': confirmacao,
         }
     )
+    
