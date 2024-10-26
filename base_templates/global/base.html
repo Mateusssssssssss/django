@@ -12,11 +12,18 @@
   <body>
     <header class="header">
       <h1 class="header-heading"><a href="{% url 'contact:index' %}" class="header-link">Agenda</a></h1>
-
+      {% if user.is_authenticated  %}
+      <div class="usuario">
+        <p  onclick="toggleDropdown()"><strong><a href="#" class="user_name">Olá, {{ user.username }}</a></strong></p>
+        <div class="logout-sair">
+            <strong><a href="{% url 'contact:logout' %}" class="logout-sair">Sair</a></strong>
+        </div>
+        {% endif %}
+    </div>
       <nav class="menu">
         <ul class="menu-list">
           <li class="menu-item">
-            <a href="{% url "contact:login" %}" class="menu-link">Entrar</a>
+            <a href="{% url 'contact:login' %}" class="menu-link">Entrar</a>
           </li>
           <li class="menu-item">
             <a href="{% url 'contact:create' %}" class="menu-link">Registrar</a>

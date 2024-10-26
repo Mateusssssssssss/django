@@ -22,20 +22,25 @@ def register(request):
 
                   })
     
-def login( request):
+def login_views(request):
     form = AuthenticationForm(request)
     
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
-        
         if form.is_valid():
             user = form.get_user()
-            messages.success(request, 'Login efetuado com sucesso')
-            return redirect('contact:index')  # Redireciona para a página inicial ou outra página desejada
+            auth.login(request, user)
+            messages.success(request,f'Logado com sucesso')
+            
         else:
             messages.error(request, 'Nome de usuário ou senha incorretos.')
     
     return render(request,'contact/login.html',{
         'form': form
     })
+    
+def logout_views(request):
+    auth.logout(request)
+    messages.success(request, 'Logout feito com sucesso')
+    return redirect('contact:login')
     
