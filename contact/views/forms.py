@@ -1,4 +1,5 @@
 from cProfile import label
+from email import errors
 from django.shortcuts import render, redirect, get_object_or_404
 from contact.models import Contact
 from django import forms
@@ -171,11 +172,22 @@ class RegisterUpdateForm(forms.ModelForm):
             if User.objects.filter(email=email).exists():
                 self.add_error(
                     'email',
-                    ValidationError('Já existe este e-mail', code='invalid')
+                    ValidationError('E-mail ja registrado', code='invalid')
                 )
 
         return email
-
+    
+    
+    def clean_password1(self):
+        password1 = self.cleaned_data.get('password1')
+        
+        if password1:
+            try:
+                password_validation.validate_password(password1)
+            except ValidationError as errors:
+                self.add_error('password1', ValidationError(errors))
+                
+        return password1
     
 def create(request):
     form_action = reverse('contact:create')
