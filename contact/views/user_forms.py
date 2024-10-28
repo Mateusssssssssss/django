@@ -1,8 +1,10 @@
 from django.contrib import auth, messages
 from django.shortcuts import redirect, render
-from contact.views import RegisterForm
+from contact.views import RegisterForm, RegisterUpdateForm
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.decorators import login_required
+
 
 
 
@@ -30,7 +32,8 @@ def login_views(request):
         if form.is_valid():
             user = form.get_user()
             auth.login(request, user)
-            messages.success(request,f'Logado com sucesso')
+            messages.success(request,f'Login feito com sucesso')
+            return redirect('contact:index')
             
         else:
             messages.error(request, 'Nome de usuário ou senha incorretos.')
@@ -43,4 +46,25 @@ def logout_views(request):
     auth.logout(request)
     messages.success(request, 'Logout feito com sucesso')
     return redirect('contact:login')
+
+
+def user_update(request):
+    if not request.user.is_authenticated:
+         return redirect('contact:login')
+    else:
+        form =  RegisterUpdateForm(instance=request.user)
+        
+    if request.method == 'POST':
+        form = RegisterUpdateForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Usuario atualizado com sucesso')
+            return redirect('contact:index')
+         
+    return render(request,'contact/register.html',
+                  {
+                      'form': form,
+
+                  })
+    
     

@@ -7,7 +7,7 @@ from django.urls import reverse
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, password_validation
 from django.contrib import auth, messages
 
 class ContactForm(forms.ModelForm):
@@ -97,6 +97,7 @@ class RegisterForm(UserCreationForm):
     
 class RegisterUpdateForm(forms.ModelForm):
     first_name = forms.CharField(
+        label="Nome",
         min_length=2,
         max_length=30,
         required=True,
@@ -106,6 +107,7 @@ class RegisterUpdateForm(forms.ModelForm):
         }
     )
     last_name = forms.CharField(
+        label="Sobrenome",
         min_length=2,
         max_length=30,
         required=True,
@@ -116,11 +118,12 @@ class RegisterUpdateForm(forms.ModelForm):
         label="Senha",
         strip=False,
         widget=forms.PasswordInput(attrs={"autocomplete": "nova-senha"}),
+        help_text=password_validation.password_validators_help_text_html(),
         required=False,
     )
 
     password2 = forms.CharField(
-        label="senha 2",
+        label="Confirme a senha",
         strip=False,
         widget=forms.PasswordInput(attrs={"autocomplete": "nova-senha"}),
         help_text='Use a mesma senha de antes.',
