@@ -1,5 +1,4 @@
 from cProfile import label
-from email import errors
 from django.shortcuts import render, redirect, get_object_or_404
 from contact.models import Contact
 from django import forms
@@ -10,6 +9,7 @@ from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
 from django.contrib.auth import authenticate, login, password_validation
 from django.contrib import auth, messages
+from django.contrib.auth.decorators import login_required
 
 class ContactForm(forms.ModelForm):
     phone = forms.CharField(
@@ -77,7 +77,7 @@ class ContactForm(forms.ModelForm):
 class RegisterForm(UserCreationForm):
     firt_name = forms.CharField(required=True,label='Nome', min_length=3)
     last_name = forms.CharField(required=True,label='Sobrenome' ,min_length=3)
-    email = forms.EmailField()
+    email = forms.EmailField(label='E-mail')
     
     class Meta:
         model = User
@@ -91,13 +91,13 @@ class RegisterForm(UserCreationForm):
             self.add_error(
                 'email', ValidationError('E-mail já cadastrado', code='invalid')
             )
-            return email
-        return('contact/register.html')
+        return email
+        
     
     
     
 class RegisterUpdateForm(forms.ModelForm):
-    first_name = forms.CharField(
+    firt_name = forms.CharField(
         label="Nome",
         min_length=2,
         max_length=30,
@@ -107,6 +107,11 @@ class RegisterUpdateForm(forms.ModelForm):
             'min_length': 'Por favor, adicionar pelo menos 2 letras.'
         }
     )
+    
+    email = forms.EmailField(
+        label='E-mail',
+        )
+    
     last_name = forms.CharField(
         label="Sobrenome",
         min_length=2,
@@ -134,7 +139,7 @@ class RegisterUpdateForm(forms.ModelForm):
     class Meta:
         model = User
         fields = (
-            'first_name', 'last_name', 'email',
+            'firt_name', 'last_name', 'email',
             'username',
         )
 
@@ -189,6 +194,7 @@ class RegisterUpdateForm(forms.ModelForm):
                 
         return password1
     
+@login_required(login_url='contact:login')   
 def create(request):
     form_action = reverse('contact:create')
     if request.method == 'POST':
@@ -198,8 +204,11 @@ def create(request):
             'form_action': form_action,
         }
         if form.is_valid():
-            contact = form.save()
+            contact = form.save(commit=False)
+            contact.owner = request.user
+            contact.save()
             return redirect('contact:update', contact_id=contact.pk)
+        messages.success(request, 'Contato criado com Sucesso')
         return render(request, 'contact/create.html', context)
     
     context = {
@@ -208,13 +217,13 @@ def create(request):
     }
     return render(request, 'contact/create.html', context)
 
-
+@login_required(login_url='contact:login')
 def update(request, contact_id):
-    contact = get_object_or_404(Contact, pk=contact_id, show=True)
+    contact = get_object_or_404(Contact, pk=contact_id, show=True, owner=request.user)
     form_action = reverse('contact:update', args=(contact_id,))
     
     if request.method == 'POST':
-        form = ContactForm(request.POST, request.FILES, instance=contact,)
+        form = ContactForm(request.POST, request.FILES, instance=contact)
         context = {
             'form': form,
             'form_action': form_action,
@@ -231,10 +240,10 @@ def update(request, contact_id):
     return render(request, 'contact/create.html', context)
 
 
-
+@login_required(login_url='contact:login')
 def delete(request, contact_id):
     contact = get_object_or_404(
-        Contact, pk=contact_id, show=True
+        Contact, pk=contact_id, show=True, owner=request.user
     )
     confirmacao = request.POST.get('confirmacao', 'nao')
 

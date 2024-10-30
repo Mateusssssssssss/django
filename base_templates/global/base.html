@@ -12,32 +12,44 @@
   <body>
     <header class="header">
       <h1 class="header-heading"><a href="{% url 'contact:index' %}" class="header-link">Agenda</a></h1>
-      {% if user.is_authenticated  %}
-      <div class="usuario">
-        <p  onclick="toggleDropdown()"><strong><a href="#" class="user_name">Olá, {{ user.username }}</a></strong></p>
-        <div class="logout-sair">
-            <strong><a href="{% url 'contact:logout' %}" class="logout-sair">Sair</a></strong>
-        </div>
-        {% endif %}
     </div>
-      <nav class="menu">
+    {% if user.is_authenticated  %}
+      <div class="usuario">
+        <p  onclick="toggleDropdown()"><strong><a href="{% url "contact:user_update" %}" class="user_name">Olá, {{ user.username }}</a></strong></p>
+      </div>
+    {% endif %}
+        <nav class="menu">
         <ul class="menu-list">
           <li class="menu-item">
+            {% if not user.is_authenticated  %}
             <a href="{% url 'contact:login' %}" class="menu-link">Entrar</a>
           </li>
           <li class="menu-item">
-            <a href="{% url 'contact:create' %}" class="menu-link">Registrar</a>
+            <a href="{% url 'contact:register' %}" class="menu-link">Registrar</a>
           </li>
+          {% endif %}
+
+          {% if user.is_authenticated %}
+          <li class="menu-item">
+            <a href="{% url 'contact:create' %}" class="menu-link">Criar</a>
+          </li>
+          <li class="menu-item">
+            <a href="{% url 'contact:user_update' %}" class="menu-link">Perfil</a>
+          </li>
+          <li class="menu-item">
+            <a href="{% url 'contact:logout' %}" class="menu-link">Sair</a>
+          </li>
+          {% endif %}
         </ul>
       </nav>
-    </header>
-    
-    <header>
       <div class="search">
         <form action="{% url 'contact:search' %}" method="GET">
           <input type="text" class="search-input" placeholder="Pesquisar" id="search" name="q" value="{{ request.GET.q.strip }}" />
         </form>
       </div>
+    </header>
+    
+    <header>
     </header>
     {% include 'global/partials/messages.html' %}
     <main>

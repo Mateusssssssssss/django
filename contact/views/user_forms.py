@@ -47,21 +47,22 @@ def logout_views(request):
     messages.success(request, 'Logout feito com sucesso')
     return redirect('contact:login')
 
-
+@login_required(login_url='contact:login')
 def user_update(request):
     if not request.user.is_authenticated:
          return redirect('contact:login')
-    else:
-        form =  RegisterUpdateForm(instance=request.user)
+     
+    form =  RegisterUpdateForm(instance=request.user)
         
     if request.method == 'POST':
         form = RegisterUpdateForm(request.POST, instance=request.user)
+        
         if form.is_valid():
             form.save()
             messages.success(request, 'Usuario atualizado com sucesso')
             return redirect('contact:index')
          
-    return render(request,'contact/register.html',
+    return render(request,'contact/update_user.html',
                   {
                       'form': form,
 

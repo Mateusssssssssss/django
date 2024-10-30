@@ -26,6 +26,8 @@
         <img src="{{contact.picture.url}}" alt="{{ contact.firt_name}} {{ contact.last_name}}">
     </p>
     {% endif %}
+   
+    {% if contact.owner  %}
     <div class="display-form">
     <form action="{% url 'contact:update' contact.id %}" method="get" > 
       <div class="div-botao-atualizar">
@@ -37,7 +39,6 @@
 
     <form action="{% url 'contact:delete' contact.id %}" method="POST" class="form-botao"> 
       {% csrf_token %}
-      
       <div class="div-botao-deletar">
       {% if confirmacao == 'nao'  %}
       <input type="hidden" name="confirmacao" value="sim">
@@ -51,6 +52,7 @@
         <strong>Deletar</strong>
         </div>
       {% endif %}
+      </div>
     </form>
-  </div>
+    {% endif %}
 {% endblock %}

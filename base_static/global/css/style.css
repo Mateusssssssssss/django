@@ -130,6 +130,7 @@
     min-width: var(--table-min-width);
     border-collapse: collapse;
     box-shadow: 4px 4px 10px 4px rgba(0, 0, 0, 0.5);
+    margin-top: 20px;
     
   }
 
@@ -273,12 +274,12 @@
   .search {
     display: flex;
     justify-content: center;
-    padding: 20px ;
+    padding: 10px ;
     
   }
   
   .search-input {
-    padding: 20px 100px 20px 100px;
+    padding: 15px 50px 15px 50px;
     border-radius: 50px;
     border: 1px solid darkseagreen;
   }
@@ -410,12 +411,16 @@
   .usuario{
     margin-left: 85rem;
   }
+  .user_name:hover{
+    background-color: darkseagreen;
+  }
   .user_name{
     text-decoration: none;
     color: black;
     position: absolute;
     top: 10px;
     right: 5px;
+    padding: 10px;
   }
  
   .logout-sair{
