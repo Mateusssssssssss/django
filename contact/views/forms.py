@@ -230,6 +230,7 @@ def update(request, contact_id):
         }
         if form.is_valid():
             contact = form.save()
+            messages.success(request, 'Contato atulizado com sucesso')
             return redirect('contact:update', contact_id=contact.pk)
         return render(request, 'contact/create.html', context)
     

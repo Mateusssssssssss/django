@@ -6,7 +6,7 @@
     <h2 class="createh2">Entrar</h2>
 
 
-    <form action="{{ form_action }}" method="POST" enctype="multipart/form-data">
+    <form class="form-login" action="{{ form_action }}" method="POST" enctype="multipart/form-data">
       {% csrf_token %}
 
       {% for field in form  %}

@@ -332,6 +332,24 @@
     box-shadow: 0 4px 7px rgba(0, 0, 0, 0.5);
     
   }
+  .form-login{
+    width: 300px;
+    margin: 0 auto;
+  }
+  .form-register{
+    width: 300px;
+    margin: 0 auto;
+  }
+
+  .form-update{
+    width: 300px;
+    margin: 0 auto;
+  }
+
+  .form-create{
+    width: 300px;
+    margin: 0 auto;
+  }
 
   .createh2{
     text-align: center;
@@ -350,12 +368,16 @@
   .form-group-register {
     display: flex;
     flex-direction: column;
+    
+    
   }
 
   .form-group-login{
     display: flex;
     flex-direction: column;
-    margin: 15px;
+    margin: 0 auto;
+    padding-top: 10px;
+    
   }
 
   .btn{

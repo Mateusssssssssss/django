@@ -32,7 +32,7 @@ def login_views(request):
         if form.is_valid():
             user = form.get_user()
             auth.login(request, user)
-            messages.success(request,f'Login feito com sucesso')
+            messages.success(request,f'Login efetuado com sucesso')
             return redirect('contact:index')
             
         else:

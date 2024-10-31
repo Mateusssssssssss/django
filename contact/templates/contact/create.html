@@ -4,7 +4,7 @@
   <div class="form-wrapper">
     <h2 class="createh2">Contato</h2>
 
-    <form action="{{ form_action }}" method="POST" enctype="multipart/form-data">
+    <form class="form-create" action="{{ form_action }}" method="POST" enctype="multipart/form-data">
       {% csrf_token %}
 
       <div class="form-content">
@@ -38,7 +38,7 @@
       </div>
       <div class="form-content">
         <div class="form-group">
-          <button class="btn" type="submit">Enviar</button>
+          <button class="btn" type="submit">Criar</button>
         </div>
       </div>
     </form>
