@@ -1,7 +1,5 @@
 :root {
     --spacing: 1.5rem;
-    --link-dark-color: rgb(0, 83, 134);
-    --link-light-color: rgb(156, 217, 255);
     --clr-white: rgb(245, 245, 255);
     --clr-black: rgb(0, 0, 30);
     --clr-light-gray: rgb(230, 230, 245);

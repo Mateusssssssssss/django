@@ -7,9 +7,10 @@ db.sqlite3
 media
 utils
 project/localsettings.py
-
+gunicorn.txt
 # Backup files # 
 *.bak 
+ngix-http.txt
 
 # If you are using PyCharm # 
 # User-specific stuff
